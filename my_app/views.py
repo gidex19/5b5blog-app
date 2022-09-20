@@ -21,6 +21,17 @@ def signup(request):
     else:
         form = SignUpForm()    
     return render(request, 'my_app/signup.html', {'form': form} )
-    
 
+def blocktest(request):
+    all_posts = Post.objects.all()
+    last_post = Post.objects.last()
+    context = {
+        'all_posts': all_posts,
+        'lastpost': last_post
+    }
+    return render(request, 'my_app/blocktest.html', context)  
+    
+def post_detail(request, pk):
+    the_post = Post.objects.filter(id=pk).first()
+    return render(request, 'my_app/post-detail.html', {'post': the_post})
     
