@@ -3,6 +3,7 @@ from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .forms import SignUpForm
 
 
 def home(request):
@@ -11,14 +12,15 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
             form.save()
             messages.success(request, f"Hello {username}, Your account has been created successfully")
             return redirect('homepage')
     else:
-        form = UserCreationForm()    
+        form = SignUpForm()    
     return render(request, 'my_app/signup.html', {'form': form} )
+    
 
     
