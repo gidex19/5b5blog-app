@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+
 def home(request):
     posts = Post.objects.all()   
     return render(request, 'my_app/home.html', {'all_posts': posts})
@@ -19,3 +20,5 @@ def signup(request):
     else:
         form = UserCreationForm()    
     return render(request, 'my_app/signup.html', {'form': form} )
+
+    
