@@ -22,6 +22,6 @@ class MyTestForm(forms.Form):
 class CreatePostForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'body', 'date_created', 'owner')
+        fields = ('title', 'body')
 
         

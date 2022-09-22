@@ -23,6 +23,7 @@ def signup(request):
     return render(request, 'my_app/signup.html', {'form': form} )
 
 def blocktest(request):
+    request.user
     all_posts = Post.objects.all()
     last_post = Post.objects.last()
     context = {
@@ -34,7 +35,19 @@ def blocktest(request):
 def post_detail(request, pk):
     the_post = Post.objects.filter(id=pk).first()
     return render(request, 'my_app/post-detail.html', {'post': the_post})
-    
+
+
 def createpost(request):
-    form = CreatePostForm()
+    user = request.user
+    if request.method == 'POST':
+        form  = CreatePostForm(request.POST)
+        if form.is_valid():
+            form_title = form.cleaned_data.get('title')
+            form_body = form.cleaned_data.get('body')
+            # form.save(owner = user)
+            Post.objects.create(title=form_title, body = form_body, owner = user)
+            messages.success(request, "Post created successfully")
+            return redirect('homepage')
+    else:
+        form  = CreatePostForm()
     return render(request, 'my_app/testform.html', {'form': form})    
