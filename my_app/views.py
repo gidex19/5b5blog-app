@@ -3,7 +3,7 @@ from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm, MyTestForm, CreatePostForm
 
 
 def home(request):
@@ -35,3 +35,6 @@ def post_detail(request, pk):
     the_post = Post.objects.filter(id=pk).first()
     return render(request, 'my_app/post-detail.html', {'post': the_post})
     
+def createpost(request):
+    form = CreatePostForm()
+    return render(request, 'my_app/testform.html', {'form': form})    
