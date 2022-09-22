@@ -1,0 +1,17 @@
+{% extends 'my_app/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block main-content %}
+<div class="container">
+  <div class="row">
+      <div class="col-10 m-auto">
+         <h3>You have been successfully logged out</h3>
+         <a class="btn btn-sm btn-outline-info" href="{% url 'loginpage' %}">Login Again</a>
+
+      </div>
+
+  </div>
+
+</div>
+
+{% endblock main-content %}

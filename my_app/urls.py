@@ -7,6 +7,7 @@ urlpatterns = [
     path('register/', views.signup, name='register'),    
     path('blocktest/', views.blocktest, name='blocktest'),    
     path('details/<int:pk>', views.post_detail, name='post-detail'),    
-    path('signin/', auth_views.LoginView.as_view(template_name = 'my_app/builtin-login.html'), name='loginpage'),    
+    path('login/', auth_views.LoginView.as_view(template_name = 'my_app/builtin-login.html'), name='loginpage'),    
+    path('logout/', auth_views.LogoutView.as_view(template_name = 'my_app/builtin-logout.html'), name='logoutpage'),    
 ]
 
