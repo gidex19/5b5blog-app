@@ -121,3 +121,4 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_URL = 'loginpage'

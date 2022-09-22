@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import SignUpForm, MyTestForm, CreatePostForm
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     posts = Post.objects.all()   
@@ -36,7 +36,7 @@ def post_detail(request, pk):
     the_post = Post.objects.filter(id=pk).first()
     return render(request, 'my_app/post-detail.html', {'post': the_post})
 
-
+@login_required
 def createpost(request):
     user = request.user
     if request.method == 'POST':
