@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import SignUpForm, MyTestForm, CreatePostForm
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic import ListView, DetailView
 def home(request):
     posts = Post.objects.all()   
     return render(request, 'my_app/home.html', {'all_posts': posts})
@@ -51,3 +51,11 @@ def createpost(request):
     else:
         form  = CreatePostForm()
     return render(request, 'my_app/testform.html', {'form': form})    
+
+class PostListView(ListView):
+    model = Post
+    context_object_name = 'posts'
+
+
+class PostDetailView(DetailView):
+    model = Post    
