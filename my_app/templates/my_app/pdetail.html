@@ -20,11 +20,18 @@
                 <h3> {{post.title}}</h3>
                 <p>{{post.date_created}}</p>
                 <p>{{post.owner.username}}</p>
+                {% if user == post.owner %}
+                <a class="btn btn-sm btn-outline-info" href="{% url 'classupdatepost' post.id %}" >Update</a>
+                <a class="btn btn-sm btn-danger " href="{% url 'classdeletepost' post.id %}" >Delete</a>
+                {% else %}
+                <a class="btn btn-sm btn-outline-info" href="{% url 'homepage' %}">Home</a>
+                {% endif%}
             </div>
 
+           
 
         </div>
-
+        
     </div>
 
 </div>

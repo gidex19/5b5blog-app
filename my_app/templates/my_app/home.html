@@ -5,7 +5,7 @@
 <div class="container">
     {% if messages %}
     {% for message in messages %}
-    <div style="background-color: green; border-radius: 20px;" class="col-4 m-auto">
+    <div style="background-color: green; border-radius: 20px;" class="col-4 m-auto alert alert-{{message.tags}}">
         <div class="p-4">
             {{message}}
         </div>
@@ -21,7 +21,7 @@
                 <h3> {{post.title}}</h3>
                 <p>{{post.date_created}}</p>
                 <p>{{post.owner.username}}</p>
-                <a class="btn btn-sm btn-outline-info" href="{% url 'post-detail' post.id %}">Read More</a>
+                <a class="btn btn-sm btn-outline-info" href="{% url 'detailpage' post.id %}">Read More</a>
             </div>
 
 

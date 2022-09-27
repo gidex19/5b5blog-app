@@ -110,7 +110,7 @@ def postdelete(request, pk):
             return redirect('homepage')
         else:
             print("ownership not verified")
-            messages.success(request, "You cant delete this post")
+            messages.debug(request, "You cant delete this post")
             return redirect('homepage')       
     else:
         print("object does not exist")
