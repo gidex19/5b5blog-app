@@ -5,7 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import SignUpForm, MyTestForm, CreatePostForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView 
+
 def home(request):
     posts = Post.objects.all()   
     return render(request, 'my_app/home.html', {'all_posts': posts})
@@ -49,13 +50,23 @@ def createpost(request):
             messages.success(request, "Post created successfully")
             return redirect('homepage')
     else:
-        form  = CreatePostForm()
+        form = CreatePostForm()
     return render(request, 'my_app/testform.html', {'form': form})    
 
 class PostListView(ListView):
     model = Post
     context_object_name = 'posts'
 
-
 class PostDetailView(DetailView):
-    model = Post    
+    model = Post
+
+class ClassCreatePost(CreateView):
+    model = Post
+    fields = ['title', 'body']
+
+    def newfunc(self,):
+        print("i just ran")
+        
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)

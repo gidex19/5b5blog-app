@@ -3,7 +3,9 @@ from time import time
 from django.db import models
 from datetime import datetime
 from django.utils import timezone
+from django.urls import reverse
 from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Post(models.Model):
@@ -15,5 +17,5 @@ class Post(models.Model):
     def __str__(self):
         return f"Post Object: {self.title} by {self.owner}"
 
-
-
+    def get_absolute_url(self):
+        return reverse('detailpage', kwargs={'pk': self.id})

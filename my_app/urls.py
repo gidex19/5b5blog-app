@@ -11,6 +11,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name = 'my_app/builtin-login.html'), name='loginpage'),    
     path('logout/', auth_views.LogoutView.as_view(template_name = 'my_app/builtin-logout.html'), name='logoutpage'),    
     path('plist/', views.PostListView.as_view(template_name = 'my_app/plist.html'), name='listpage'),    
-    path('pdetail/<int:pk>', views.PostDetailView.as_view(template_name = 'my_app/pdetail.html'), name='detailpage'),    
+    path('pdetail/<int:pk>/', views.PostDetailView.as_view(template_name = 'my_app/pdetail.html'), name='detailpage'),    
+    path('create/', views.ClassCreatePost.as_view(), name='classcreatepost')    
 ]
 
