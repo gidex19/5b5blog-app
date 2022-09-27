@@ -6,6 +6,7 @@ from django.contrib import messages
 from .forms import SignUpForm, MyTestForm, CreatePostForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def home(request):
     posts = Post.objects.all()   
@@ -60,12 +61,10 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
-class ClassCreatePost(CreateView):
+
+class ClassCreatePost(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'body']
-
-    def newfunc(self,):
-        print("i just ran")
         
     def form_valid(self, form):
         form.instance.owner = self.request.user
