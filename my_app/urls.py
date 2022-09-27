@@ -13,6 +13,7 @@ urlpatterns = [
     path('plist/', views.PostListView.as_view(template_name = 'my_app/plist.html'), name='listpage'),    
     path('pdetail/<int:pk>/', views.PostDetailView.as_view(template_name = 'my_app/pdetail.html'), name='detailpage'),    
     path('create/', views.ClassCreatePost.as_view(), name='classcreatepost'),    
-    path('update/<int:pk>/', views.ClassUpdatePost.as_view(template_name = 'my_app/post_update.html' ), name='classupdatepost')    
+    path('update/<int:pk>/', views.ClassUpdatePost.as_view(template_name = 'my_app/post_update.html' ), name='classupdatepost'),    
+    path('delete/<int:pk>/', views.ClassDeletePost.as_view(), name='classdeletepost'),    
 ]
 
