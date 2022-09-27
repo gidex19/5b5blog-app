@@ -98,3 +98,22 @@ class ClassDeletePost(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return False
 
 
+def postdelete(request, pk):
+    user = request.user
+    if Post.objects.filter(id = pk).exists():
+        print("object exists")
+        post = Post.objects.filter(id = pk).first()
+        if user == post.owner: 
+            print("user ownership verified")
+            Post.objects.get(id = pk).delete()
+            messages.success(request, 'Post Deleted')
+            return redirect('homepage')
+        else:
+            print("ownership not verified")
+            messages.success(request, "You cant delete this post")
+            return redirect('homepage')       
+    else:
+        print("object does not exist")
+        messages.success(request, "Post does not exist")
+        return redirect('homepage')
+

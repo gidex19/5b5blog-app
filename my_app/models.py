@@ -15,7 +15,7 @@ class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Post Object: {self.title} by {self.owner}"
+        return f"Post Object: {self.id} by {self.owner}"
 
     def get_absolute_url(self):
         return reverse('detailpage', kwargs={'pk': self.id})

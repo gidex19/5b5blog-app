@@ -15,5 +15,6 @@ urlpatterns = [
     path('create/', views.ClassCreatePost.as_view(), name='classcreatepost'),    
     path('update/<int:pk>/', views.ClassUpdatePost.as_view(template_name = 'my_app/post_update.html' ), name='classupdatepost'),    
     path('delete/<int:pk>/', views.ClassDeletePost.as_view(), name='classdeletepost'),    
+    path('funcdelete/<int:pk>/', views.postdelete, name='func_delete'),    
 ]
 
