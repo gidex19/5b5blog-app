@@ -122,3 +122,5 @@ USE_TZ = False
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'homepage'
 LOGIN_URL = 'loginpage'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

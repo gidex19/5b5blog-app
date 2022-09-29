@@ -6,12 +6,13 @@ from .models import Post
 
 
 mychoices = [('I', 'Imran'), ('KB', 'KB'), ('Alex', 'Alex')]
+
 class SignUpForm(UserCreationForm):
     email = forms.EmailField()
-    
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+   
 
 class MyTestForm(forms.Form):
     name = forms.CharField(required=True, label='First Name')

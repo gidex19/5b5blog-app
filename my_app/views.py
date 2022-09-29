@@ -117,3 +117,10 @@ def postdelete(request, pk):
         messages.success(request, "Post does not exist")
         return redirect('homepage')
 
+
+def profile(request, pk):
+    main_user = User.objects.filter(id=pk).first()
+    posts_count = Post.objects.filter(owner = main_user).count()
+    context = {'main_user': main_user, 'posts_count': posts_count} 
+    return render(request, 'my_app/profile.html', context)
+    

@@ -2,9 +2,12 @@
 from django.urls import path
 from my_app import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home, name='homepage'),
     path('register/', views.signup, name='register'), 
+    path('profile/<int:pk>/', views.profile, name='profile'), 
     path('createpost/', views.createpost, name='createpost'),    
     path('blocktest/', views.blocktest, name='blocktest'),    
     path('details/<int:pk>', views.post_detail, name='post-detail'),    
@@ -16,5 +19,6 @@ urlpatterns = [
     path('update/<int:pk>/', views.ClassUpdatePost.as_view(template_name = 'my_app/post_update.html' ), name='classupdatepost'),    
     path('delete/<int:pk>/', views.ClassDeletePost.as_view(), name='classdeletepost'),    
     path('funcdelete/<int:pk>/', views.postdelete, name='func_delete'),    
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
 
